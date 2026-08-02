@@ -1,140 +1,154 @@
 # TrustFabric Project Blueprint
 
-> This document captures my design decisions, learning journey, and implementation plan while building TrustFabric. It will continuously evolve as I progress through the Cyfrin Blockchain Basics and Solidity courses.
+> This document captures the design decisions, implementation plan, and technical direction of TrustFabric. It will evolve throughout my blockchain learning journey as I progress through the Cyfrin Blockchain Basics and Solidity courses.
 
 ---
 
 ## Project Vision
 
-TrustFabric is a blockchain-based trust and integrity layer for enterprise networking and cybersecurity infrastructure, and the goal here isn't to replace existing infrastructure management systems, it's to provide an immutable verification layer that allows organizations to prove that critical infrastructure records have not been modified after they were approved. This project - TrustFabric - will focus on integrity, auditability, transparency, and cryptographic verification while keeping confidential infrastructure data off-chain.
+TrustFabric is a blockchain-based trust and integrity layer for enterprise networking and cybersecurity infrastructure.
+
+The objective is not to replace existing infrastructure management systems, but to provide an immutable verification layer that allows organizations to prove that critical infrastructure records have not been modified after approval.
+
+Rather than storing sensitive information on-chain, TrustFabric will store cryptographic proofs that can later be used to verify the integrity of infrastructure data while keeping confidential information private.
+
+The project will be built incrementally as I learn blockchain development, with each implementation reflecting concepts introduced throughout the Cyfrin curriculum.
 
 ---
 
-# Design Philosophy
+## Design Philosophy
 
-Every design decision throughout this project will follow three core principles:
+Every design decision throughout this project follows three principles:
 
 - Integrity over storage
 - Privacy by design
-- Blockchain only where blockchain adds value
+- Blockchain only where blockchain provides clear value
 
-Sensitive infrastructure data should remain private. Blockchain should only be used to store cryptographic proof that allows integrity verification.
+Infrastructure configurations, logs, certificates, and other sensitive operational data should remain off-chain. Blockchain will only store the information required to prove authenticity and integrity.
 
 ---
-## Blockchain Concepts I Will Apply:
 
+## Core Blockchain Principles
 
 ### Distributed Ledger
 
+TrustFabric will use blockchain as a distributed source of truth rather than relying on a single centralized database.
 
-A blockchain is a distributed ledger shared across many independent nodes rather than being owned by a single organization.
-
-
-I will apply i by using the blockchain as the shared source of truth for infrastructure integrity records instead of relying on a centralized database.
-
-TrustFabric will use the blockchain to prove that infrastructure records have not been altered after being recorded.
+Every integrity record written to the blockchain should be independently verifiable by anyone with access to the network.
 
 ---
 
 ### Decentralization
 
-Blockchain networks are decentralized, meaning no single authority controls the network.
+Infrastructure verification should not depend on a single administrator or organization.
 
-So to implement this, TrustFabric will remove reliance on a single administrator for verifying infrastructure integrity. Instead of trusting one database administrator, verification will rely on the blockchain network.
-
----
-
-### Permissionless Networks
-
-My takeaway here is that anyone can participate in a public blockchain without requesting permission from a central authority.
-
-So although TrustFabric is designed for enterprise environments, I want to understand how permissionless systems create trust without relying on centralized organizations.
-
-This principle will influence how infrastructure verification can remain independently verifiable.
-
----
-
-### True Ownership
-
-Ownership on a blockchain is controlled through cryptographic keys instead of third-party institutions.
-
-I plan to explore how administrators and organizations can cryptographically prove ownership of registered infrastructure assets.
-
----
-
-### Credible Neutrality
-
-Blockchain protocols enforce the same rules for every participant without bias.
-
-TrustFabric verification should always follow objective cryptographic rules rather than relying on trust in individual administrators.
-
----
-
-### Transparency
-
-Blockchain transactions can be independently verified by anyone participating in the network.
-
-TrustFabric will provide a transparent verification process for infrastructure integrity without exposing confidential operational information.
+Using a decentralized blockchain removes a single point of trust and allows verification through the network itself.
 
 ---
 
 ### Immutability
 
-Once information is written to the blockchain, it cannot easily be modified or removed. Once recorded, the information becomes close to impossible to alter or remove which create a permanent history.
+Once an integrity record has been written to the blockchain, it should remain permanently verifiable.
 
-This will be the foundation of TrustFabric. Infrastructure integrity records should remain permanently verifiable even years after they were created.
+This creates a tamper-evident history of infrastructure changes that cannot be silently modified or deleted.
+
+Immutability will serve as the foundation of the entire project.
+
+---
+
+### Transparency
+
+Verification should always be transparent.
+
+Although confidential infrastructure information will remain private, the existence, timestamp, and integrity proof of a record should always be independently verifiable.
 
 ---
 
 ### Cryptographic Hashing
 
-A cryptographic hash creates a unique digital fingerprint of data. Even a one-character modification produces a completely different hash.
+TrustFabric will never store confidential infrastructure information directly on the blockchain.
 
-With that said, TrustFabric will never store confidential infrastructure configurations directly on-chain. Instead, it will store cryptographic hashes that can later be compared with newly generated hashes to verify integrity.
+Instead, it will store cryptographic hashes that act as digital fingerprints.
 
-For example;
+If the original data changes—even by a single character—a newly generated hash will no longer match the stored value, immediately indicating that the data has been modified.
+
+Examples include:
+
 - Router configurations
 - Firewall policies
 - SSH public keys
-- TLS certificates
-- Security audit records
+- TLS certificate fingerprints
+- Security audit reports
+- Infrastructure configuration backups
 
 ---
 
 ### Smart Contracts
 
-Smart contracts are programs deployed on the blockchain that automatically execute predefined logic. They will become the core logic of TrustFabric.
+Smart contracts will provide the core business logic of TrustFabric.
 
-Initially they will be responsible for:
+As my Solidity knowledge grows, the smart contracts will gradually become responsible for:
 
 - Registering infrastructure assets
-- Storing integrity fingerprints
+- Recording integrity hashes
 - Recording timestamps
 - Emitting audit events
-- Verifying registered records
+- Verifying submitted hashes
+- Managing ownership of registered assets
 
-Additional functionality will be added as I continue learning Solidity.
+Additional functionality will be introduced throughout the project as new blockchain concepts are learned.
 
 ---
 
-### Why Blockchain?
+## Why Blockchain
 
-One of the goals of this project is to understand when blockchain is actually the right solution to a problem.
+TrustFabric exists to explore when blockchain is the correct solution—not simply because blockchain is available.
 
-TrustFabric will not use blockchain simply because it is a modern technology. Instead, it will use blockchain where its core strengths provide clear value.
+The project intentionally focuses on blockchain features that solve real infrastructure security problems.
 
-For this project, those strengths are;
+These include:
 
 - Immutable record keeping
 - Cryptographic integrity verification
-- Transparent auditability
+- Transparent audit trails
 - Decentralized trust
-- Tamper evident history
+- Tamper-evident history
 
-Infrastructure configs, logs, and other sensitive operational data will remain off-chain. Blockchain will serve as the verification layer that proves their integrity.
+Everything else will remain off-chain.
+
+This approach keeps the blockchain lightweight while using it where its strengths provide the greatest value.
 
 ---
 
-## Current Scope
+## Initial Project Scope
 
-Version 0.1 focuses on understanding blockchain fundamentals and designing the architecture before implementation.
+Version 0.1 focuses on establishing the project's technical foundation before implementing complex functionality.
+
+The initial scope includes:
+
+- Understanding blockchain fundamentals
+- Learning Solidity basics
+- Designing the project architecture
+- Planning the smart contract structure
+- Preparing the repository for iterative development
+
+Future versions will gradually introduce smart contracts, testing, deployment, and integrity verification workflows as new concepts are learned.
+
+---
+
+## Planned Repository Growth
+
+The repository will grow alongside my understanding of blockchain development.
+
+Planned milestones include:
+
+- Designing the first smart contract
+- Registering infrastructure assets
+- Recording integrity hashes
+- Verifying infrastructure records
+- Writing automated contract tests
+- Deploying to a blockchain test network
+- Documenting design decisions and lessons learned
+- Improving the architecture through iterative development (if there's any more time left)
+
+This document serves as the project's living technical blueprint and will continue evolving throughout the TrustFabric learning journey.
