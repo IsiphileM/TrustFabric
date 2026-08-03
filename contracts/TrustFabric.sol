@@ -20,4 +20,5 @@ contract TrustFabric {
     // Unix timestamp recording when the asset was registered.
     uint256 public registeredAt;
 
+
 }
