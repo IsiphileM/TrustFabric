@@ -20,5 +20,12 @@ contract TrustFabric {
     // Unix timestamp recording when the asset was registered.
     uint256 public registeredAt;
 
+    // Registers an infrastructure asset.
+    function registerAsset(string memory _assetId, bytes32 _configurationHash) public {
+
+        assetId = _assetId;
+        configurationHash = _configurationHash;
+
+    }
 
 }
