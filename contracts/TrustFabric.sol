@@ -25,7 +25,8 @@ contract TrustFabric {
 
         assetId = _assetId;
         configurationHash = _configurationHash;
-
+        registeredBy = msg.sender;
+        registeredAt = block.timestamp;
     }
 
 }
