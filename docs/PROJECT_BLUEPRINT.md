@@ -136,6 +136,24 @@ Future versions will gradually introduce smart contracts, testing, deployment, a
 
 ---
 
+## Version 0.1 Progress
+
+The first implementation of TrustFabric establishes the project's smart contract foundation using Solidity fundamentals.
+
+The current smart contract supports:
+
+- Registering infrastructure assets
+- Recording cryptographic configuration hashes
+- Recording who registered an asset
+- Recording when an asset was registered
+- Storing multiple assets using structs and arrays
+- Fast asset lookup using mappings
+- Preventing duplicate asset registrations
+
+Although the project is still in its early stages, these features provide the initial data model that future versions will expand upon with verification, ownership, events, access control, testing, and deployment.
+
+---
+
 ## Planned Repository Growth
 
 The repository will grow alongside my understanding of blockchain development.
