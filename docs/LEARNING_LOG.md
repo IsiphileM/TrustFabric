@@ -9,7 +9,7 @@ As I continue learning, I will update this document after completing an importan
 
 ---
 
-# Entry 01 — Project Planning
+# Entry 01 - Project Planning
 
 ### Progress
 
@@ -71,7 +71,7 @@ Next I plan to:
 
 ---
 
-# Entry 02 — Solidity Fundamentals
+# Entry 02 - Solidity Fundamentals
 
 ### Progress
 
@@ -131,3 +131,59 @@ Next I plan to:
 - Continue with the next Cyfrin Updraft section
 - Expand TrustFabric with additional smart contract functionality
 - Continue improving both the codebase and documentation as the project grows
+
+---
+
+# Entry 03 - Smart Contract Composition
+
+### Progress
+
+This section introduced the idea that smart contracts do not exist in isolation. One of Ethereum's biggest strengths is that contracts can create and interact with other contracts, allowing developers to build larger decentralized applications from smaller, reusable components.
+
+I also learned how Solidity projects become easier to manage by separating contracts into different files and importing them where needed instead of placing every contract in a single file.
+
+---
+
+### What I Learned
+
+This section introduced several new concepts:
+
+- Deploying one smart contract from another smart contract
+- Creating contract instances using the 'new' keyword
+- Interacting with deployed contracts
+- Organising Solidity projects using imports
+- Understanding composability within Ethereum applications
+
+Rather than viewing a smart contract as an isolated program, I now understand that multiple contracts can work together to provide more complex functionality.
+
+---
+
+### Applying These Concepts to TrustFabric
+
+At this stage, TrustFabric only performs one primary responsibility: registering infrastructure assets.
+
+Although the course demonstrated deploying multiple contracts through a Storage Factory example, I decided not to introduce multiple contracts into TrustFabric yet.
+
+(not only because of the project deadline... but keeping everything inside a single contract currently results in a simpler and more maintainable architecture at my stge of learning and trying not to content overload). As the project grows and additional responsibilities emerge, such as asset verification, ownership management, or audit logging, it will become more appropriate to separate functionality into multiple contracts.
+
+For now, my btakeaway here is that understanding when *not* to introduce additional complexity is just as valuable as understanding how to do it.
+
+---
+
+### Challenges
+
+The biggest conceptual shift during this section was understanding that smart contracts can communicate with each other.
+
+Initially I thought every smart contract operated independently, but I now understand that Ethereum applications are often composed of many contracts working together through clearly defined interfaces.
+
+I also learned that good software design is not about using every available feature immediately, but about introducing complexity only when it provides a genuine benefit.
+
+---
+
+### Next Steps
+
+Next I plan to:
+
+- Continue the next section of the Solidity course
+- Learn additional Solidity features
+- Continue expanding TrustFabric only when new concepts naturally improve the project
