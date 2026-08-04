@@ -67,3 +67,67 @@ Next I plan to:
 - Set up Foundry
 - Write my first smart contract
 - Deploy to the Sepolia Testnet
+
+
+---
+
+# Entry 02 — Solidity Fundamentals
+
+### Progress
+
+After completing the Solidity Fundamentals section of the Cyfrin Updraft course, I implemented the first working version of TrustFabric's smart contract.
+
+Rather than following the tutorial exactly, I adapted each Solidity concept to fit TrustFabric's purpose as an integrity verification platform for enterprise networking infrastructure.
+
+---
+
+### What I Learned
+
+This section introduced the core building blocks of Solidity.
+
+I learned how to:
+
+- Create and compile smart contracts
+- Work with Solidity data types
+- Write public functions
+- Use structs to group related information
+- Store multiple records using arrays
+- Create fast lookups using mappings
+- Use `memory` when creating temporary objects
+- Prevent invalid actions using `require()`
+
+---
+
+### Applying These Concepts to TrustFabric
+
+Instead of storing simple example data, I used these concepts to build the first version of TrustFabric.
+
+The smart contract can now:
+
+- Register infrastructure assets
+- Store cryptographic configuration hashes
+- Record who registered an asset
+- Record when it was registered
+- Store multiple assets
+- Quickly locate assets by their identifier
+- Prevent duplicate asset registrations
+
+---
+
+### Challenges
+
+One concept I found particularly interesting was mappings.
+
+At first they appeared similar to arrays, but I learned they solve a different problem by allowing data to be located efficiently without searching through every stored record.
+
+I also learned why mappings return default values and why storing the array index plus one is a common Solidity pattern when checking whether a record already exists.
+
+---
+
+### Next Steps
+
+Next I plan to:
+
+- Continue with the next Cyfrin Updraft section
+- Expand TrustFabric with additional smart contract functionality
+- Continue improving both the codebase and documentation as the project grows
