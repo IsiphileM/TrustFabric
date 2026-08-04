@@ -28,11 +28,22 @@ contract TrustFabric {
     // List of all registered infrastructure assets.
     Asset[] public assets;
 
+    // Maps an asset ID to its position in the assets array.
+    // A value of 0 means the asset has not been registered.
+    // Stored values are array index + 1.
+    mapping(string => uint256) public assetIndex;
+
     // Registers a new infrastructure asset.
     function registerAsset(
         string memory _assetId,
         bytes32 _configurationHash
     ) public {
+
+        // Ensure an asset cannot be registered twice.
+        require(
+            assetIndex[_assetId] == 0,
+            "Asset ID already exists."
+        );
 
         Asset memory newAsset = Asset(
             _assetId,
@@ -42,6 +53,9 @@ contract TrustFabric {
         );
 
         assets.push(newAsset);
+
+        // Store the array position (+1) for quick future lookups.
+        assetIndex[_assetId] = assets.length;
 
     }
 
