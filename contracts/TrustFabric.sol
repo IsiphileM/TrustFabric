@@ -3,30 +3,46 @@ pragma solidity ^0.8.34;
 
 // TrustFabric by Isiphile Maqhashu
 // A blockchain-based trust and integrity layer for enterprise networking infrastructure.
-// Version 0.1 - Initial state variables.
+// Version 0.1
 
 contract TrustFabric {
 
-    //Unique identifier for the infrastructure asset.
-    string public assetId;
+    // Represents one registered infrastructure asset.
+    struct Asset {
 
-    // Cryptographic fingerprint of the approved configuration.
-    // The actual configuration remains off-chain.
-    bytes32 public configurationHash;
+        // Unique identifier for the infrastructure asset.
+        string assetId;
 
-    // Wallet address that registered this asset.
-    address public registeredBy;
+        // Cryptographic fingerprint of the approved configuration.
+        // The actual configuration remains off-chain.
+        bytes32 configurationHash;
 
-    // Unix timestamp recording when the asset was registered.
-    uint256 public registeredAt;
+        // Wallet address that registered the asset.
+        address registeredBy;
 
-    // Registers an infrastructure asset.
-    function registerAsset(string memory _assetId, bytes32 _configurationHash) public {
+        // Unix timestamp recording when the asset was registered.
+        uint256 registeredAt;
 
-        assetId = _assetId;
-        configurationHash = _configurationHash;
-        registeredBy = msg.sender;
-        registeredAt = block.timestamp;
+    }
+
+    // List of all registered infrastructure assets.
+    Asset[] public assets;
+
+    // Registers a new infrastructure asset.
+    function registerAsset(
+        string memory _assetId,
+        bytes32 _configurationHash
+    ) public {
+
+        Asset memory newAsset = Asset(
+            _assetId,
+            _configurationHash,
+            msg.sender,
+            block.timestamp
+        );
+
+        assets.push(newAsset);
+
     }
 
 }
