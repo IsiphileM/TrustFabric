@@ -3,7 +3,7 @@ pragma solidity ^0.8.34;
 
 // TrustFabric by Isiphile Maqhashu
 // A blockchain-based trust and integrity layer for enterprise networking infrastructure.
-// Version 0.1
+// Version 0.2
 
 contract TrustFabric {
 
@@ -56,6 +56,38 @@ contract TrustFabric {
 
         // Store the array position (+1) for quick future lookups.
         assetIndex[_assetId] = assets.length;
+
+    }
+
+    // Returns all information about a registered asset.
+    function getAsset(
+        string memory _assetId
+    )
+        public
+        view
+        returns (
+            string memory,
+            bytes32,
+            address,
+            uint256
+        )
+    {
+
+        require(
+            assetIndex[_assetId] != 0,
+            "Asset does not exist."
+        );
+
+        uint256 index = assetIndex[_assetId] - 1;
+
+        Asset memory asset = assets[index];
+
+        return (
+            asset.assetId,
+            asset.configurationHash,
+            asset.registeredBy,
+            asset.registeredAt
+        );
 
     }
 
